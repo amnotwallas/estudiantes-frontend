@@ -3,6 +3,8 @@ import './maestros.css';
 import { authService } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
 
+const API_URL = 'https://estudiantes-api-rest.onrender.com/api';
+
 function Maestros() {
   const { user } = useAuth();
   const [maestros, setMaestros] = useState([]);
@@ -32,7 +34,7 @@ function Maestros() {
 
   const fetchMaestros = async () => {
     try {
-      const res = await authService.authFetch('http://localhost:3000/api/maestros');
+      const res = await authService.authFetch(`${API_URL}/maestros`);
       if (!res.ok) throw new Error('Error al cargar maestros');
       const data = await res.json();
       setMaestros(data);
@@ -50,7 +52,7 @@ function Maestros() {
   const handleDelete = async (id) => {
     if (!window.confirm('¿Estás seguro de eliminar este maestro?')) return;
     try {
-      const res = await authService.authFetch(`http://localhost:3000/api/maestros/${id}`, {
+      const res = await authService.authFetch(`${API_URL}/maestros/${id}`, {
         method: 'DELETE',
       });
       if (!res.ok) throw new Error('Error al eliminar maestro');
@@ -69,7 +71,7 @@ function Maestros() {
     if (!window.confirm(`¿Estás seguro de actualizar ${selectedMaestros.size} maestros?`)) return;
     try {
       const updatePromises = Array.from(selectedMaestros).map(id =>
-        authService.authFetch(`http://localhost:3000/api/maestros/${id}`, {
+        authService.authFetch(`${API_URL}/maestros/${id}`, {
           method: 'PUT',
           body: JSON.stringify(bulkEditData),
         })
@@ -95,7 +97,7 @@ function Maestros() {
     if (!window.confirm(`¿Estás seguro de eliminar ${selectedMaestros.size} maestros?`)) return;
     try {
       const deletePromises = Array.from(selectedMaestros).map(id =>
-        authService.authFetch(`http://localhost:3000/api/maestros/${id}`, {
+        authService.authFetch(`${API_URL}/maestros/${id}`, {
           method: 'DELETE',
         })
       );
@@ -125,7 +127,7 @@ function Maestros() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await authService.authFetch(`http://localhost:3000/api/maestros/${editingId}`, {
+      const res = await authService.authFetch(`${API_URL}/maestros/${editingId}`, {
         method: 'PUT',
         body: JSON.stringify(formData),
       });
@@ -148,7 +150,7 @@ function Maestros() {
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      const res = await authService.authFetch('http://localhost:3000/api/maestros', {
+      const res = await authService.authFetch('${API_URL}/maestros', {
         method: 'POST',
         body: JSON.stringify(formData),
       });

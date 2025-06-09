@@ -16,6 +16,7 @@ const setupAutoTable = () => {
     }
   }
 };
+const API_URL = 'https://estudiantes-api-rest.onrender.com/api';
 
 // Ejecutar la configuración
 setupAutoTable();
@@ -53,7 +54,7 @@ function Reinscripcion() {
 
   const fetchAlumnos = async () => {
     try {
-      const res = await authService.authFetch('http://localhost:3000/api/alumnos');
+      const res = await authService.authFetch(`${API_URL}/alumnos`);
       if (!res.ok) throw new Error('Error al cargar alumnos');
       const data = await res.json();
       setAlumnos(data);
@@ -107,7 +108,7 @@ function Reinscripcion() {
 
   const fetchUltimaReinscripcion = async (alumnoId) => {
     try {
-      const res = await authService.authFetch(`http://localhost:3000/api/reinscripciones/alumno/${alumnoId}`);
+      const res = await authService.authFetch(`${API_URL}/reinscripciones/alumno/${alumnoId}`);
       if (!res.ok) throw new Error('Error al cargar reinscripciones');
       const data = await res.json();
       if (data.length > 0) {
@@ -139,7 +140,7 @@ function Reinscripcion() {
     }
 
     try {
-      const res = await authService.authFetch(`http://localhost:3000/api/reinscripciones/${alumnoId}`, {
+      const res = await authService.authFetch(`${API_URL}/reinscripciones/${alumnoId}`, {
         method: 'DELETE'
       });
 
@@ -159,7 +160,7 @@ function Reinscripcion() {
 
     try {
       const deletePromises = Array.from(selectedAlumnos).map(id =>
-        authService.authFetch(`http://localhost:3000/api/reinscripciones/${id}`, {
+        authService.authFetch(`${API_URL}/reinscripciones/${id}`, {
           method: 'DELETE'
         })
       );
@@ -192,8 +193,8 @@ function Reinscripcion() {
 
       const method = editingId ? 'PUT' : 'POST';
       const url = editingId 
-        ? `http://localhost:3000/api/reinscripciones/${editingId}`
-        : 'http://localhost:3000/api/reinscripciones';
+        ? `${API_URL}/reinscripciones/${editingId}`
+        : `${API_URL}/reinscripciones`;
 
       const res = await authService.authFetch(url, {
         method,
@@ -260,7 +261,7 @@ function Reinscripcion() {
 
       console.log('Enviando datos del alumno:', alumnoData);
 
-      const alumnoRes = await authService.authFetch('http://localhost:3000/api/alumnos', {
+      const alumnoRes = await authService.authFetch(`${API_URL}/alumnos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -288,7 +289,7 @@ function Reinscripcion() {
 
       console.log('Enviando datos de reinscripción:', reinscripcionData);
 
-      const reinscripcionRes = await authService.authFetch('http://localhost:3000/api/reinscripciones', {
+      const reinscripcionRes = await authService.authFetch(`${API_URL}/reinscripciones`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -302,7 +303,7 @@ function Reinscripcion() {
       if (!reinscripcionRes.ok) {
         // Si falla la reinscripción, intentar eliminar el alumno creado
         try {
-          await authService.authFetch(`http://localhost:3000/api/alumnos/${alumnoResponseData._id}`, {
+          await authService.authFetch(`${API_URL}/alumnos/${alumnoResponseData._id}`, {
             method: 'DELETE'
           });
         } catch (deleteError) {
@@ -714,7 +715,7 @@ function Reinscripcion() {
 
       try {
         console.log(`Intentando obtener reinscripciones para alumno ID: ${alumno._id}`);
-        const reinscripcionRes = await authService.authFetch(`http://localhost:3000/api/reinscripciones/alumno/${alumno._id}`);
+        const reinscripcionRes = await authService.authFetch(`${API_URL}/reinscripciones/alumno/${alumno._id}`);
         
         if (!reinscripcionRes.ok) {
           const errorText = await reinscripcionRes.text();
