@@ -1,0 +1,48 @@
+:root {
+    --first-color: #071aeecc;
+    --second-color: #bcdbea;
+    --third-color: #f1e507;
+    --four-color: #424344;
+    --white: #ffffff;
+    --light-gray: #f2f2f2;
+    --dark-gray: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+}
+
+/* Layout general */
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+/* Barra de navegación */
+.container-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    background-color: var(--first-color);
+    padding: 0 0.5em;
+    height: 70px;
+    color: var(--white);
+}
+
+/* Contenedor principal centrado horizontalmente */
+.container-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}

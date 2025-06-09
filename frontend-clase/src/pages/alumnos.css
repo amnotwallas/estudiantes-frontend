@@ -1,0 +1,542 @@
+.alumnos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f2f2f2;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.alumnos-container > * {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.alumnos-content {
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(67, 134, 156, 0.2);
+  overflow-x: auto;
+}
+
+.alumnos-container h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.alumnos-container h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #555;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #43869c;
+  box-shadow: 0 0 0 2px rgba(67, 134, 156, 0.2);
+}
+
+.selected-count {
+  background-color: #43869c;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.2s ease;
+}
+
+/* Definir anchos específicos para cada columna */
+th:nth-child(1), td:nth-child(1) { /* Checkbox */
+  width: 40px;
+}
+
+th:nth-child(2), td:nth-child(2) { /* Nombre */
+  width: 180px;
+}
+
+th:nth-child(3), td:nth-child(3) { /* Apellido */
+  width: 100px;
+}
+
+th:nth-child(4), td:nth-child(4) { /* Email */
+  width: 220px;
+}
+
+th:nth-child(5), td:nth-child(5) { /* Teléfono */
+  width: 120px;
+}
+
+th:nth-child(6), td:nth-child(6) { /* Carrera */
+  width: 200px;
+}
+
+th:nth-child(7), td:nth-child(7) { /* Estado */
+  width: 100px;
+}
+
+th:nth-child(8), td:nth-child(8) { /* Acciones */
+  width: 120px;
+}
+
+th {
+  background-color: #43869c;
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th:first-child {
+  border-top-left-radius: 8px;
+}
+
+th:last-child {
+  border-top-right-radius: 8px;
+}
+
+tr {
+  transition: all 0.2s ease;
+}
+
+tr:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.checkbox-cell {
+  width: 40px;
+  text-align: center;
+}
+
+.checkbox-cell input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #43869c;
+  border-radius: 4px;
+}
+
+.btn-action {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-edit {
+  background-color: #28a745;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
+
+.btn-action:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-action:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el estado */
+td:nth-child(6) {
+  font-weight: 500;
+}
+
+td:nth-child(6):contains('Activo') {
+  color: #28a745;
+}
+
+td:nth-child(6):contains('Inactivo') {
+  color: #dc3545;
+}
+
+/* Estilo para el email */
+td:nth-child(4) {
+  font-family: monospace;
+  font-size: 0.95rem;
+}
+
+/* Estilo para el teléfono */
+td:nth-child(5) {
+  font-family: monospace;
+  color: #666;
+}
+
+/* Estilo para la carrera */
+td:nth-child(5) {
+  font-weight: 500;
+  color: #333;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.error {
+  color: #dc3545;
+  text-align: center;
+  padding: 20px;
+}
+
+.bulk-actions {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  border: 1px solid #dee2e6;
+}
+
+.bulk-actions .btn-action {
+  min-width: 120px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  text-transform: none;
+}
+
+.bulk-actions .btn-edit {
+  background-color: #28a745;
+}
+
+.bulk-actions .btn-delete {
+  background-color: #dc3545;
+}
+
+.bulk-edit-form {
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.bulk-edit-form h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-grid input,
+.form-grid select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+  outline: none;
+  border-color: #43869c;
+  box-shadow: 0 0 0 2px rgba(67, 134, 156, 0.2);
+}
+
+.bulk-edit-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.bulk-edit-buttons button {
+  min-width: 120px;
+}
+
+@media (max-width: 768px) {
+  .alumnos-container {
+    padding: 10px;
+  }
+
+  .alumnos-content {
+    padding: 15px;
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .bulk-actions {
+    flex-direction: row;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .bulk-actions .btn-action {
+    min-width: 100px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-container {
+    margin: 0 -10px;
+    border-radius: 0;
+  }
+
+  table {
+    border-radius: 0;
+  }
+
+  th, td {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .btn-action {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Estilos específicos para la tabla de alumnos */
+.alumnos-content .table-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dee2e6;
+}
+
+.alumnos-content table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  table-layout: fixed;
+}
+
+.alumnos-content th,
+.alumnos-content td {
+  padding: 12px 16px;
+  text-align: left;
+  border: 1px solid #dee2e6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.alumnos-content th {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Ajustar los anchos de las columnas específicamente para la tabla de alumnos */
+.alumnos-content th:nth-child(1), 
+.alumnos-content td:nth-child(1) { /* Checkbox */
+  width: 5%;
+  min-width: 40px;
+  text-align: center;
+  border-right: 1px solid #dee2e6;
+}
+
+.alumnos-content th:nth-child(2), 
+.alumnos-content td:nth-child(2) { /* Nombre */
+  width: 20%;
+  min-width: 120px;
+  border-right: 1px solid #dee2e6;
+}
+
+.alumnos-content th:nth-child(3), 
+.alumnos-content td:nth-child(3) { /* Apellido */
+  width: 20%;
+  min-width: 120px;
+  border-right: 1px solid #dee2e6;
+}
+
+.alumnos-content th:nth-child(4), 
+.alumnos-content td:nth-child(4) { /* Género */
+  width: 15%;
+  min-width: 100px;
+  border-right: 1px solid #dee2e6;
+}
+
+.alumnos-content th:nth-child(5), 
+.alumnos-content td:nth-child(5) { /* Teléfono */
+  width: 20%;
+  min-width: 120px;
+  border-right: 1px solid #dee2e6;
+}
+
+.alumnos-content th:nth-child(6), 
+.alumnos-content td:nth-child(6) { /* Email */
+  width: 20%;
+  min-width: 150px;
+}
+
+.alumnos-content tr {
+  transition: background-color 0.2s ease;
+}
+
+.alumnos-content tr:hover {
+  background-color: #f8f9fa;
+}
+
+.alumnos-content tr.selected {
+  background-color: #e9ecef;
+}
+
+.alumnos-content tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.alumnos-content tr:nth-child(even):hover {
+  background-color: #e9ecef;
+}
+
+.alumnos-content .checkbox-cell input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #43869c;
+}
+
+@media (max-width: 768px) {
+  .alumnos-content .table-container {
+    max-width: 100%;
+  }
+
+  .alumnos-content table {
+    min-width: 500px;
+  }
+
+  .alumnos-content th,
+  .alumnos-content td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+.alumnos-content > div:first-child {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.alumnos-content > div:first-child .btn-action {
+  min-width: 200px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-transform: none;
+}
+
+@media (max-width: 768px) {
+  .alumnos-content > div:first-child {
+    padding: 0 10px;
+  }
+
+  .alumnos-content > div:first-child .btn-action {
+    width: 100%;
+    min-width: 150px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}

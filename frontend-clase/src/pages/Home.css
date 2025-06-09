@@ -1,0 +1,26 @@
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content:baseline;
+  height: calc(100vh - 100px);
+  width: 100%;      
+}
+
+.home-container h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  padding: 0px;
+  margin: 0px;
+} 
+
+.home-container h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #333;
+  padding: 0px;
+  margin: 0px;  
+}

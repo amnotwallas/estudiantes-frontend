@@ -1,0 +1,292 @@
+.maestros-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.maestros-container h1 {
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.maestros-container h2 {
+  color: #666;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.maestros-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.selected-count {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Estilos específicos para la tabla de maestros */
+.maestros-content .table-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dee2e6;
+}
+
+.maestros-content table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  table-layout: fixed;
+}
+
+.maestros-content th,
+.maestros-content td {
+  padding: 12px 16px;
+  text-align: left;
+  border: 1px solid #dee2e6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.2s ease;
+  font-size: 0.95rem;
+}
+
+/* Ajustar los anchos de las columnas específicamente para la tabla de maestros */
+.maestros-content th:nth-child(1), 
+.maestros-content td:nth-child(1) { /* Checkbox */
+  width: 5%;
+  min-width: 40px;
+  text-align: center;
+  border-right: 1px solid #dee2e6;
+}
+
+.maestros-content th:nth-child(2), 
+.maestros-content td:nth-child(2) { /* Nombre */
+  width: 20%;
+  min-width: 120px;
+  border-right: 1px solid #dee2e6;
+}
+
+.maestros-content th:nth-child(3), 
+.maestros-content td:nth-child(3) { /* Apellido */
+  width: 20%;
+  min-width: 120px;
+  border-right: 1px solid #dee2e6;
+}
+
+.maestros-content th:nth-child(4), 
+.maestros-content td:nth-child(4) { /* Email */
+  width: 25%;
+  min-width: 150px;
+  border-right: 1px solid #dee2e6;
+}
+
+.maestros-content th:nth-child(5), 
+.maestros-content td:nth-child(5) { /* Teléfono */
+  width: 15%;
+  min-width: 100px;
+  border-right: 1px solid #dee2e6;
+}
+
+.maestros-content th:nth-child(6), 
+.maestros-content td:nth-child(6) { /* Especialidad */
+  width: 15%;
+  min-width: 120px;
+}
+
+.maestros-content th {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.maestros-content tr {
+  transition: background-color 0.2s ease;
+}
+
+.maestros-content tr:hover {
+  background-color: #f8f9fa;
+}
+
+.maestros-content tr.selected {
+  background-color: #e9ecef;
+}
+
+.maestros-content tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.maestros-content tr:nth-child(even):hover {
+  background-color: #e9ecef;
+}
+
+@media (max-width: 768px) {
+  .maestros-content .table-container {
+    max-width: 100%;
+  }
+
+  .maestros-content table {
+    min-width: 500px;
+  }
+
+  .maestros-content th,
+  .maestros-content td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mantener otros estilos necesarios */
+.loading {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+}
+
+.error {
+  color: #dc3545;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Estilos para el contenedor del botón crear */
+.maestros-content > div:first-child {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.maestros-content > div:first-child .btn-action {
+  min-width: 200px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-transform: none;
+}
+
+/* Estilos para los botones de acción masiva */
+.bulk-actions {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  border: 1px solid #dee2e6;
+}
+
+.bulk-actions .btn-action {
+  min-width: 120px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  text-transform: none;
+}
+
+.bulk-actions .btn-edit {
+  background-color: #28a745;
+}
+
+.bulk-actions .btn-delete {
+  background-color: #dc3545;
+}
+
+@media (max-width: 768px) {
+  .maestros-content > div:first-child {
+    padding: 0 10px;
+  }
+
+  .maestros-content > div:first-child .btn-action {
+    width: 100%;
+    min-width: 150px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .bulk-actions {
+    flex-direction: row;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .bulk-actions .btn-action {
+    min-width: 100px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.bulk-edit-form {
+  margin-bottom: 20px;
+}
+
+.bulk-edit-form h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.bulk-edit-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus {
+  outline: none;
+  border-color: #43869c;
+  box-shadow: 0 0 0 2px rgba(67, 134, 156, 0.2);
+}
