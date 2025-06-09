@@ -3,6 +3,8 @@ import './alumnos.css';
 import { authService } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
 
+const API_URL = 'https://estudiantes-api-rest.onrender.com/api';
+
 const CARRERAS_PREDEFINIDAS = [
   'Ingeniería en Sistemas Computacionales',
   'Ingeniería en Informática',
@@ -41,7 +43,7 @@ function Alumnos() {
 
   const fetchAlumnos = async () => {
     try {
-      const res = await authService.authFetch('http://localhost:3000/api/alumnos');
+      const res = await authService.authFetch(`${API_URL}/alumnos`);
       if (!res.ok) throw new Error('Error al cargar alumnos');
       const data = await res.json();
       setAlumnos(data);
@@ -59,7 +61,7 @@ function Alumnos() {
   const handleDelete = async (id) => {
     if (!window.confirm('¿Estás seguro de eliminar este alumno?')) return;
     try {
-      const res = await authService.authFetch(`http://localhost:3000/api/alumnos/${id}`, {
+      const res = await authService.authFetch(`${API_URL}/alumnos/${id}`, {
         method: 'DELETE',
       });
       if (!res.ok) throw new Error('Error al eliminar alumno');
@@ -78,7 +80,7 @@ function Alumnos() {
     if (!window.confirm(`¿Estás seguro de actualizar ${selectedAlumnos.size} alumnos?`)) return;
     try {
       const updatePromises = Array.from(selectedAlumnos).map(id =>
-        authService.authFetch(`http://localhost:3000/api/alumnos/${id}`, {
+        authService.authFetch(`${API_URL}/alumnos/${id}`, {
           method: 'PUT',
           body: JSON.stringify(bulkEditData),
         })
@@ -104,7 +106,7 @@ function Alumnos() {
     if (!window.confirm(`¿Estás seguro de eliminar ${selectedAlumnos.size} alumnos?`)) return;
     try {
       const deletePromises = Array.from(selectedAlumnos).map(id =>
-        authService.authFetch(`http://localhost:3000/api/alumnos/${id}`, {
+        authService.authFetch(`${API_URL}/alumnos/${id}`, {
           method: 'DELETE',
         })
       );
@@ -140,7 +142,7 @@ function Alumnos() {
         return;
       }
 
-      const res = await authService.authFetch(`http://localhost:3000/api/alumnos/${editingId}`, {
+      const res = await authService.authFetch(`${API_URL}/alumnos/${editingId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -185,7 +187,7 @@ function Alumnos() {
 
       console.log('Intentando crear alumno con datos:', alumnoData);
 
-      const res = await authService.authFetch('http://localhost:3000/api/alumnos', {
+      const res = await authService.authFetch(`${API_URL}/alumnos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

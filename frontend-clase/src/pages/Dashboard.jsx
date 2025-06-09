@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { authService } from '../services/authService';
 import '../styles/Dashboard.css';
 
+
+const API_URL = 'https://estudiantes-api-rest.onrender.com/api';
 const Dashboard = () => {
     const [users, setUsers] = useState([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
@@ -20,7 +22,7 @@ const Dashboard = () => {
 
     const fetchUsers = async () => {
         try {
-            const res = await authService.authFetch('http://localhost:3000/api/users');
+            const res = await authService.authFetch(`${API_URL}/users`);
             if (!res.ok) throw new Error('Error al cargar usuarios');
             const data = await res.json();
             setUsers(data);
@@ -39,7 +41,7 @@ const Dashboard = () => {
     const handleCreate = async (e) => {
         e.preventDefault();
         try {
-            const res = await authService.authFetch('http://localhost:3000/api/users', {
+            const res = await authService.authFetch(`${API_URL}/users`, {
                 method: 'POST',
                 body: JSON.stringify(formData)
             });
@@ -55,7 +57,7 @@ const Dashboard = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            const res = await authService.authFetch(`http://localhost:3000/api/users/${editingId}`, {
+            const res = await authService.authFetch(`${API_URL}/users/${editingId}`, {
                 method: 'PUT',
                 body: JSON.stringify(formData)
             });
@@ -77,7 +79,7 @@ const Dashboard = () => {
 
         try {
             const deletePromises = Array.from(selectedUsers).map(id =>
-                authService.authFetch(`http://localhost:3000/api/users/${id}`, {
+                authService.authFetch(`${API_URL}/users/${id}`, {
                     method: 'DELETE'
                 })
             );

@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://estudiantes-api-rest.onrender.com/api';
+
 
 export const authService = {
     async login(username, password) {
@@ -7,6 +8,7 @@ export const authService = {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({ username, password })
         });
 

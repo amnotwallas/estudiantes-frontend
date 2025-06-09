@@ -3,6 +3,7 @@ import './carreras.css';
 import { authService } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
 
+const API_URL = 'https://estudiantes-api-rest.onrender.com/api';
 // Carreras predefinidas
 const CARRERAS_PREDEFINIDAS = [
   {
@@ -93,7 +94,7 @@ function Carreras() {
       // Intentar obtener carreras del backend
       try {
         console.log('Intentando obtener carreras del backend');
-        const res = await authService.authFetch('http://localhost:3000/api/carreras');
+        const res = await authService.authFetch(`${API_URL}/carreras`);
         console.log('Respuesta del backend:', res);
         
         if (res.ok) {
@@ -140,7 +141,7 @@ function Carreras() {
   const handleDelete = async (id) => {
     if (!window.confirm('¿Estás seguro de eliminar esta carrera?')) return;
     try {
-      const res = await authService.authFetch(`http://localhost:3000/api/carreras/${id}`, {
+      const res = await authService.authFetch(`${API_URL}/carreras/${id}`, {
         method: 'DELETE',
       });
       if (!res.ok) throw new Error('Error al eliminar carrera');
@@ -159,7 +160,7 @@ function Carreras() {
     if (!window.confirm(`¿Estás seguro de actualizar ${selectedCarreras.size} carreras?`)) return;
     try {
       const updatePromises = Array.from(selectedCarreras).map(id =>
-        authService.authFetch(`http://localhost:3000/api/carreras/${id}`, {
+        authService.authFetch(`${API_URL}/carreras/${id}`, {
           method: 'PUT',
           body: JSON.stringify(bulkEditData),
         })
@@ -183,7 +184,7 @@ function Carreras() {
     if (!window.confirm(`¿Estás seguro de eliminar ${selectedCarreras.size} carreras?`)) return;
     try {
       const deletePromises = Array.from(selectedCarreras).map(id =>
-        authService.authFetch(`http://localhost:3000/api/carreras/${id}`, {
+        authService.authFetch(`${API_URL}/carreras/${id}`, {
           method: 'DELETE',
         })
       );
@@ -211,7 +212,7 @@ function Carreras() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await authService.authFetch(`http://localhost:3000/api/carreras/${editingId}`, {
+      const res = await authService.authFetch(`${API_URL}/carreras/${editingId}`, {
         method: 'PUT',
         body: JSON.stringify(formData),
       });
@@ -232,7 +233,7 @@ function Carreras() {
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      const res = await authService.authFetch('http://localhost:3000/api/carreras', {
+      const res = await authService.authFetch(`${API_URL}/carreras`, {
         method: 'POST',
         body: JSON.stringify(formData),
       });
@@ -293,7 +294,7 @@ function Carreras() {
   const fetchAlumnosCarrera = async (nombreCarrera) => {
     try {
       setLoadingAlumnos(true);
-      const res = await authService.authFetch(`http://localhost:3000/api/alumnos/carrera/${encodeURIComponent(nombreCarrera)}`);
+      const res = await authService.authFetch(`${API_URL}/alumnos/carrera/${encodeURIComponent(nombreCarrera)}`);
       if (!res.ok) throw new Error('Error al cargar los alumnos de la carrera');
       const data = await res.json();
       setAlumnosCarrera(data);
